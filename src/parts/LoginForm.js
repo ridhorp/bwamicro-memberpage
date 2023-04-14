@@ -1,11 +1,48 @@
 import React, { useState } from "react";
+import { withRouter } from "react-router-dom";
+import users from 'constants/api/users';
 
-export default function LoginForm() {
+import { setAuthorizationHeader } from 'configs/axios';
+
+function LoginForm({ history }) {
   const [email, setEmail] = useState(() => "");
   const [password, setPassword] = useState(() => "");
 
+
   function submit(e) {
     e.preventDefault();
+
+    users.login({
+      email: email,
+      password: password
+    }).then(res => {
+      setAuthorizationHeader(res.data.token);
+      users.details().then(detail => {
+        const production = process.env.REACT_APP_FRONTPAGE_URL === "http://micro.ahlinya.online" ?
+          "Domain = micro.ahlinya.online" : ""
+
+        localStorage.setItem("BWAMICRO:token", JSON.stringify({
+          ...res.data, email: email
+        }))
+
+        const redirect = localStorage.getItem("BWAMICRO:redirect");
+        const userCookie = {
+          name: detail.data.name,
+          thumbnail: detail.data.avatar,
+        };
+
+        const expires = new Date(
+          new Date().getTime() + 7 * 24 * 60 * 60 * 1000
+        );
+
+        document.cookie = `BWAMICRO:user=${JSON.stringify(
+          userCookie
+        )}; expires=${expires.toUTCString()}; path:/; ${production}`;
+
+        history.push(redirect || "/");
+      });
+
+    }).catch(err => { })
   }
   return (
     <div className="flex justify-center items-center pb-24">
@@ -22,7 +59,7 @@ export default function LoginForm() {
             <input
               name="email"
               type="email"
-              onChange={setPassword}
+              onChange={(event) => setEmail(event.target.value)}
               className="bg-white focus:outline-none border w-full px-6 py-3 w-1/2 border-gray-600 focus:border-teal-500"
               value={email}
               placeholder="Your email addres"
@@ -36,10 +73,10 @@ export default function LoginForm() {
             <input
               name="password"
               type="password"
-              onChange={setPassword}
+              onChange={(event) => setPassword(event.target.value)}
               className="bg-white focus:outline-none border w-full px-6 py-3 w-1/2 border-gray-600 focus:border-teal-500"
               value={password}
-              placeholder="Your password addres"
+              placeholder="Your password"
             />
           </div>
 
@@ -52,9 +89,9 @@ export default function LoginForm() {
         </form>
       </div>
 
-      <div className="w-1/12 hidden md:block"></div>
+      <div className="w-1/12 hidden sm:block"></div>
 
-      <div className="w-5/12 hidden md:block justify-end pt-24 pr-16">
+      <div className="w-5/12 flex justify-end pt-24 pr-16">
         <div className="relative" style={{ width: 369, height: 440 }}>
           <div
             className="absolute border-indigo-700 border-2 -mt-8 -ml-16 left-0"
@@ -80,3 +117,5 @@ export default function LoginForm() {
     </div>
   );
 }
+
+export default withRouter(LoginForm);

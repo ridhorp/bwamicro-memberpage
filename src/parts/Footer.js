@@ -12,29 +12,29 @@ function Footer() {
           <h6 className="text-white">Company</h6>
           <ul className="mt-4">
             <li className="mt-2">
-              <Link href="">
-                <button className="text-indigo-500 hover:text-teal-500 hover:underline">
+              <Link to="" className="text-indigo-500 hover:text-teal-500 hover:underline">
+                <button >
                   API Developer
                 </button>
               </Link>
             </li>
             <li className="mt-2">
-              <Link href="">
-                <button className="text-indigo-500 hover:text-teal-500 hover:underline">
+              <Link to="" className="text-indigo-500 hover:text-teal-500 hover:underline">
+                <button >
                   Career
                 </button>
               </Link>
             </li>
             <li className="mt-2">
-              <Link href="">
-                <button className="text-indigo-500 hover:text-teal-500 hover:underline">
+              <Link to="" className="text-indigo-500 hover:text-teal-500 hover:underline">
+                <button >
                   Our Story
                 </button>
               </Link>
             </li>
             <li className="mt-2">
-              <Link href="">
-                <button className="text-indigo-500 hover:text-teal-500 hover:underline">
+              <Link to="" className="text-indigo-500 hover:text-teal-500 hover:underline">
+                <button >
                   New Soon
                 </button>
               </Link>
@@ -45,29 +45,29 @@ function Footer() {
           <h6 className="text-white">Student</h6>
           <ul className="mt-4">
             <li className="mt-2">
-              <Link href="">
-                <button className="text-indigo-500 hover:text-teal-500 hover:underline">
+              <Link to="" className="text-indigo-500 hover:text-teal-500 hover:underline">
+                <button >
                   Get Scholarship
                 </button>
               </Link>
             </li>
             <li className="mt-2">
-              <Link href="">
-                <button className="text-indigo-500 hover:text-teal-500 hover:underline">
+              <Link to="" className="text-indigo-500 hover:text-teal-500 hover:underline">
+                <button >
                   Our Pathskills
                 </button>
               </Link>
             </li>
             <li className="mt-2">
-              <Link href="">
-                <button className="text-indigo-500 hover:text-teal-500 hover:underline">
+              <Link to="" className="text-indigo-500 hover:text-teal-500 hover:underline">
+                <button >
                   All Features
                 </button>
               </Link>
             </li>
             <li className="mt-2">
-              <Link href="">
-                <button className="text-indigo-500 hover:text-teal-500 hover:underline">
+              <Link to="" className="text-indigo-500 hover:text-teal-500 hover:underline">
+                <button >
                   Refund Policy
                 </button>
               </Link>
